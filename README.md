@@ -118,10 +118,6 @@ This generates a `dist` folder with optimized files ready for deployment on any 
 4. **Push to the branch** (`git push origin feature/amazing-feature`)
 5. **Open a Pull Request** 🚀
 
-## 📜 License
-
-This project is licensed under the **MIT License**.
-
 ## 📬 Contact
 
 Neoly Alexis Moreno - alxism16@gmail.com
