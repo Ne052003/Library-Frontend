@@ -12,12 +12,11 @@ const authService = {
   },
 
   register: async (userData) => {
-    const response = await axiosInstance.post('/auth/register', {
+    await axiosInstance.post('/auth/register', {
       email: userData.email,
       password: userData.password,
       fullName: userData.fullName
     });
-    return response.data;
   },
 
   logout: () => {

@@ -12,17 +12,17 @@ const bookService = {
   },
 
   createBook: async (bookData) => {
-    const response = await axiosInstance.post('/library/books', bookData);
+    const response = await axiosInstance.post('/library/admin/books', bookData);
     return response.data;
   },
 
   updateBook: async (id, bookData) => {
-    const response = await axiosInstance.put(`/library/books/${id}`, bookData);
+    const response = await axiosInstance.put(`/library/admin/books/${id}`, bookData);
     return response.data;
   },
 
   deleteBook: async (id) => {
-    const response = await axiosInstance.delete(`/library/books/${id}`);
+    const response = await axiosInstance.delete(`/library/admin/books/${id}`);
     return response.data;
   },
 

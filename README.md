@@ -51,13 +51,19 @@ npm install
 VITE_API_URL=http://localhost:8080/library
 ```
 
-4️⃣ Start the development server:
+4️⃣ Modify the `vite.config.js` file to add
+
+```sh
+base: "./",
+```
+
+5️⃣ Start the development server:
 
 ```sh
 npm run dev
 ```
 
-5️⃣ Open your browser at `http://localhost:5173`
+Open your browser at `http://localhost:5173`
 
 ## 📂 Project Structure
 

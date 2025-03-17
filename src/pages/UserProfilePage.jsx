@@ -68,8 +68,11 @@ const UserProfilePage = () => {
   };
 
   const validationSchema = Yup.object({
-    fullName: Yup.string().required('El nombre completo es requerido'),
-    email: Yup.string()
+    fullName: Yup.string().min(5, 'El nombre completo debe contener al menos 5 caracteres')
+      .required('El nombre completo es requerido'),
+    email: Yup.string().matches(
+      /^[_A-Za-z0-9-\+]+(\.[_A-Za-z0-9-]+)*@[A-Za-z0-9-]+(\.[A-Za-z0-9]+)*(\.[A-Za-z]{2,})$/,
+      'Ingresa un correo electrónico válido')
       .email('Ingresa un correo electrónico válido')
       .required('El correo electrónico es requerido'),
     address: Yup.string(),

@@ -53,7 +53,7 @@ export const AuthProvider = ({ children }) => {
 
   const register = async (userData) => {
     try {
-      return await authService.register(userData);
+      await authService.register(userData);
     } catch (error) {
       throw error;
     }

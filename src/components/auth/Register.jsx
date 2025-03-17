@@ -13,16 +13,29 @@ const Register = () => {
 
   const validationSchema = Yup.object({
     email: Yup.string()
-      .email('Ingresa un correo electrónico válido')
+      .matches(
+        /^[_A-Za-z0-9-\+]+(\.[_A-Za-z0-9-]+)*@[A-Za-z0-9-]+(\.[A-Za-z0-9]+)*(\.[A-Za-z]{2,})$/,
+        'Ingresa un correo electrónico válido'
+      )
       .required('El correo electrónico es requerido'),
     password: Yup.string()
-      .min(6, 'La contraseña debe tener al menos 6 caracteres')
-      .required('La contraseña es requerida'),
+      .required('La contraseña es requerida')
+      .min(8, 'La contraseña debe contener al menos 8 caracteres')
+      .matches(/[A-Z]/, 'Debe contener al menos una letra mayúscula')
+      .matches(/[a-z]/, 'Debe contener al menos una letra minúscula')
+      .matches(/\d/, 'Debe contener al menos un número')
+      .matches(/[@$!%*?&]/, 'Debe contener al menos un carácter especial (@$!%*?&)')
+      .test(
+        'password-strength',
+        'La contraseña debe tener al menos 8 caracteres, una mayúscula, una minúscula, un número y un carácter especial',
+        (value) => !!value // Esto garantiza que siempre se muestre el mensaje
+      ),
     confirmPassword: Yup.string()
       .oneOf([Yup.ref('password'), null], 'Las contraseñas deben coincidir')
       .required('Confirma tu contraseña'),
     fullName: Yup.string()
       .required('El nombre completo es requerido')
+      .min(5, 'El nombre completo debe contener al menos 5 caracteres')
   });
 
   const formik = useFormik({
@@ -35,7 +48,7 @@ const Register = () => {
     validationSchema,
     onSubmit: async (values) => {
       try {
-        
+
         const { confirmPassword, ...userData } = values;
         await register(userData);
         setSuccess('Registro exitoso. Ahora puedes iniciar sesión.');
@@ -148,4 +161,4 @@ const Register = () => {
   );
 };
 
-export default Register; 
+export default Register;
