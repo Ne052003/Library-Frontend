@@ -2,11 +2,13 @@ import React from 'react';
 import {
   Card,
   CardContent,
+  CardMedia,
   Typography,
   Button,
   Box,
   Chip
 } from '@mui/material';
+import libraryicon from '../../assets/libraryicon.jpg';
 
 const BookCard = ({ book, onBookClick }) => {
   return (
@@ -22,6 +24,12 @@ const BookCard = ({ book, onBookClick }) => {
         }
       }}
     >
+      <CardMedia
+        component="img"
+        height="200"
+        image={book.imageUrl || libraryicon}
+        alt={book.title}
+      />
       <CardContent sx={{
         flexGrow: 1, p: 2,
         '&:last-child': { pb: 2 }
@@ -62,4 +70,4 @@ const BookCard = ({ book, onBookClick }) => {
   );
 };
 
-export default BookCard; 
+export default BookCard;

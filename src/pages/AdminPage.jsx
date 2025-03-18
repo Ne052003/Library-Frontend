@@ -5,7 +5,6 @@ import {
   Card,
   CardContent,
   Grid,
-  Divider,
   CircularProgress,
   Paper,
   Tabs,
@@ -22,10 +21,6 @@ import {
   DialogContent,
   DialogActions,
   TextField,
-  FormControl,
-  InputLabel,
-  Select,
-  MenuItem,
   IconButton,
   Alert
 } from '@mui/material';
@@ -56,6 +51,9 @@ const AdminPage = () => {
 
   const [selectedBill, setSelectedBill] = useState(null);
   const [billDetailOpen, setBillDetailOpen] = useState(false);
+
+  const [descriptionDialogOpen, setDescriptionDialogOpen] = useState(false);
+  const [selectedBookDescription, setSelectedBookDescription] = useState('');
 
   useEffect(() => {
     const fetchData = async () => {
@@ -136,6 +134,15 @@ const AdminPage = () => {
       setError('Error al eliminar el elemento. Por favor, intenta de nuevo.');
       setDeleteConfirmOpen(false);
     }
+  };
+
+  const handleViewDescription = (description) => {
+    setSelectedBookDescription(description);
+    setDescriptionDialogOpen(true);
+  };
+
+  const handleCloseDescriptionDialog = () => {
+    setDescriptionDialogOpen(false);
   };
 
   const bookValidationSchema = Yup.object({
@@ -259,6 +266,7 @@ const AdminPage = () => {
                         <TableCell><strong>Precio</strong></TableCell>
                         <TableCell><strong>Precio de alquiler</strong></TableCell>
                         <TableCell><strong>Stock</strong></TableCell>
+                        <TableCell><strong>Descripción</strong></TableCell>
                         <TableCell><strong>Acciones</strong></TableCell>
                       </TableRow>
                     </TableHead>
@@ -271,6 +279,15 @@ const AdminPage = () => {
                           <TableCell>${book.price}</TableCell>
                           <TableCell>${book.rentalPrice}</TableCell>
                           <TableCell>{book.stock}</TableCell>
+                          <TableCell>
+                            <Button
+                              variant="outlined"
+                              size="small"
+                              onClick={() => handleViewDescription(book.description || 'Sin descripción disponible')}
+                            >
+                              Ver
+                            </Button>
+                          </TableCell>
                           <TableCell>
                             <IconButton
                               color="primary"
@@ -546,8 +563,21 @@ const AdminPage = () => {
           </Button>
         </DialogActions>
       </Dialog>
+
+      <Dialog
+        open={descriptionDialogOpen}
+        onClose={handleCloseDescriptionDialog}
+      >
+        <DialogTitle>Descripción del Libro</DialogTitle>
+        <DialogContent>
+          <Typography>{selectedBookDescription}</Typography>
+        </DialogContent>
+        <DialogActions>
+          <Button onClick={handleCloseDescriptionDialog}>Cerrar</Button>
+        </DialogActions>
+      </Dialog>
     </Box>
   );
 };
 
-export default AdminPage; 
+export default AdminPage;

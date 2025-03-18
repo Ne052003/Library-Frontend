@@ -15,12 +15,12 @@ import {
   DialogTitle,
   DialogContent,
   DialogActions,
-  TextField,
   FormControl,
   InputLabel,
   Select,
   MenuItem
 } from '@mui/material';
+import libraryicon from '../assets/libraryicon.jpg'
 import { useAuth } from '../context/AuthContext';
 import bookService from '../api/bookService';
 
@@ -56,7 +56,6 @@ const BookDetailPage = () => {
       const result = await bookService.purchaseBook(id);
       setSuccessMessage(`¡Compra exitosa! Número de factura: ${result.billId}`);
       setPurchaseConfirmOpen(false);
-      // Actualizar el libro para reflejar que ya no está disponible
       setBook({ ...book, available: false });
     } catch (err) {
       setError(err.response?.data?.message || 'Error al realizar la compra. Por favor, intenta de nuevo.');
@@ -141,7 +140,7 @@ const BookDetailPage = () => {
           <Card>
             <CardMedia
               component="img"
-              image={book.imageUrl || 'https://via.placeholder.com/300x450?text=No+Image'}
+              image={book.imageUrl || libraryicon}
               alt={book.title}
               sx={{ height: 450 }}
             />
@@ -203,14 +202,14 @@ const BookDetailPage = () => {
                   variant="body1"
                   sx={{
                     ml: 2,
-                    backgroundColor: book.available ? 'success.light' : 'error.light',
+                    backgroundColor: book.stock > 0 ? 'success.light' : 'error.light',
                     color: 'white',
                     px: 1,
                     py: 0.5,
                     borderRadius: 1
                   }}
                 >
-                  {book.available ? 'Disponible' : 'No disponible'}
+                  {book.stock > 0 ? 'Disponible' : 'No disponible'}
                 </Typography>
               </Box>
 

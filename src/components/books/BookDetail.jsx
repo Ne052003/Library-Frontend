@@ -12,8 +12,10 @@ import {
   InputLabel,
   Select,
   MenuItem,
-  Grid
+  Grid,
+  CardMedia
 } from '@mui/material';
+import libraryicon from '../../assets/libraryicon.jpg'
 import { useAuth } from '../../context/AuthContext';
 import { useCart } from '../../context/CartContext';
 import { useNotification } from '../../context/NotificationContext';
@@ -51,11 +53,23 @@ const BookDetail = ({ book, open, onClose }) => {
       <DialogContent>
         <Grid container spacing={2}>
           <Grid item xs={12}>
+            <CardMedia
+              component="img"
+              height="300"
+              image={book.imageUrl || libraryicon}
+              alt={book.title}
+            />
+          </Grid>
+          <Grid item xs={12}>
             <Typography variant="subtitle1">
               Autor: {book.author}
             </Typography>
           </Grid>
-
+          <Grid item xs={12}>
+            <Typography variant="subtitle1">
+              Descripción: {book.description}
+            </Typography>
+          </Grid>
           <Grid item xs={12}>
             <Box sx={{ mb: 2 }}>
               <FormControl fullWidth>
@@ -123,4 +137,4 @@ const BookDetail = ({ book, open, onClose }) => {
   );
 };
 
-export default BookDetail; 
+export default BookDetail;

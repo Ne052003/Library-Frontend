@@ -10,6 +10,7 @@ import {
   CircularProgress,
   Container
 } from '@mui/material';
+import libraryicon from '../assets/libraryicon.jpg'
 import { useNavigate } from 'react-router-dom';
 import bookService from '../api/bookService';
 import { useAuth } from '../context/AuthContext';
@@ -51,7 +52,7 @@ const HomePage = () => {
       >
         <Container>
           <Typography variant="h2" component="h1" gutterBottom>
-            Bienvenido a nuestra Librería Online
+            Bienvenido a nuestra librería online
           </Typography>
 
           <Typography variant="h5" paragraph sx={{ mb: 4 }}>
@@ -110,7 +111,7 @@ const HomePage = () => {
                   <CardMedia
                     component="img"
                     height="200"
-                    image={book.imageUrl || 'https://via.placeholder.com/200x300?text=No+Image'}
+                    image={book.imageUrl || libraryicon}
                     alt={book.title}
                   />
                   <CardContent sx={{ flexGrow: 1 }}>

@@ -27,7 +27,7 @@ const Navbar = () => {
         <Toolbar>
           <Typography variant="h6" component="div" sx={{ flexGrow: 1 }}>
             <RouterLink to="/" style={{ color: 'white', textDecoration: 'none' }}>
-              Librería Online
+              NeoLibrary
             </RouterLink>
           </Typography>
 
