@@ -25,7 +25,6 @@ const bookService = {
     const response = await axiosInstance.delete(`/library/admin/books/${id}`);
     return response.data;
   },
-
 };
 
 export default bookService;
