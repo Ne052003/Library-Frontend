@@ -2,7 +2,7 @@
   "homepage": "https://Ne052003.github.io/Library-Frontend/",
   "name": "library-frontend",
   "private": true,
-  "version": "0.0.0",
+  "version": "1.0.0",
   "type": "module",
   "scripts": {
     "dev": "vite",
@@ -16,12 +16,12 @@
     "@emotion/styled": "^11.14.0",
     "@mui/icons-material": "^6.4.7",
     "@mui/material": "^6.4.7",
-    "axios": "^1.8.3",
+    "axios": "^1.12",
     "formik": "^2.4.6",
     "jwt-decode": "^4.0.0",
     "react": "^19.0.0",
     "react-dom": "^19.0.0",
-    "react-router-dom": "^7.3.0",
+    "react-router-dom": "^7.5.2",
     "yup": "^1.6.1"
   },
   "devDependencies": {
